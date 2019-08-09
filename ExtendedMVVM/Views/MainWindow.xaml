@@ -4,11 +4,12 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ExtendedMVVM"
-        xmlns:viewModels ="clr-namespace:ExtendedMVVM.ViewModels"
+        xmlns:viewmodels ="clr-namespace:ExtendedMVVM.ViewModels"
+        xmlns:views="clr-namespace:ExtendedMVVM.Views"
+
         mc:Ignorable="d"
         Title="ExtendedMVVM Example" Height="450" Width="1000">
-
-    <Grid>
+    <Grid Background="{StaticResource ColorWindowBackgroundBrush}">
         <Grid.ColumnDefinitions>
             <ColumnDefinition MaxWidth="200" />
             <ColumnDefinition/>
@@ -16,37 +17,64 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="50" />
             <RowDefinition/>
+            <RowDefinition Height="30"/>
         </Grid.RowDefinitions>
-        <Expander Grid.Row="0" Grid.Column="0" Style="{DynamicResource ExpanderStyleLeftMenu}"></Expander>
-        
-        <StackPanel Grid.Row="1" Grid.Column="0" Margin="10">
-            <TextBlock>Companies:</TextBlock>
-        <ItemsControl ItemsSource="{Binding Companies}">
-            <ItemsControl.ItemTemplate>
-                <HierarchicalDataTemplate>
-                        <Expander Header="{Binding CompanyName}" Style="{DynamicResource ExpanderStyleLeftMenu}">
-                        <StackPanel>
-                            <Expander Header="Adresses" Margin="10,0,0,0">
-                                <StackPanel >
-                                    <ListBox ItemsSource="{Binding Adresses}" DisplayMemberPath="Department"></ListBox>
-                                </StackPanel>
-                            </Expander>
 
-                            <Expander Header="Employees" Margin="10,0,0,0">
-                                <StackPanel>
-                                    <ListBox ItemsSource="{Binding Employees}" DisplayMemberPath="Name"></ListBox>
-                                </StackPanel>
-                            </Expander>
-                        </StackPanel>
-                    </Expander>
-                </HierarchicalDataTemplate>
-            </ItemsControl.ItemTemplate>
-        </ItemsControl>
-        </StackPanel>
+        <Border Grid.Row="1" Grid.Column="0" Margin="10" BorderBrush="{StaticResource ColorMainBrush}" BorderThickness="1" CornerRadius="3" >
+            <ScrollViewer VerticalScrollBarVisibility="Auto">
+                <StackPanel Background="{StaticResource ColorSecondaryBrush}">
+                    <TextBlock Foreground="White" FontWeight="Bold" Margin="10,0,0,0">Companies:</TextBlock>
+                    <ItemsControl ItemsSource="{Binding Companies}">
+                        <ItemsControl.ItemTemplate>
+                            <HierarchicalDataTemplate>
+                                <Expander Style="{DynamicResource ExpanderStyleLeftMenu}">
+                                    <Expander.Header>
+                                        <Button Command="{Binding DataContext.ShowCompanyView, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=Window}}" CommandParameter="{Binding}" Style="{DynamicResource ButtonStyleLeftMenu}">
+                                            <TextBlock Margin="10,0,0,0" Text="{Binding CompanyName}" FontWeight="Bold"/>
+                                        </Button>
+                                    </Expander.Header>
+                                    <StackPanel>
+                                        <Expander Header="Adresses" Margin="10,0,0,0" Style="{DynamicResource ExpanderStyleLeftMenu}">
+                                            <ItemsControl ItemsSource="{Binding Adresses}">
+                                                <ItemsControl.ItemTemplate>
+                                                    <HierarchicalDataTemplate>
+                                                        <Button Style="{DynamicResource ButtonStyleLeftMenu}">
+                                                            <TextBlock Margin="10,0,0,0" Text="{Binding Department}"/>
+                                                        </Button>
+                                                    </HierarchicalDataTemplate>
+                                                </ItemsControl.ItemTemplate>
+                                            </ItemsControl>
+                                        </Expander>
 
-        <ContentControl Grid.Row="0" Grid.Column="1">
-            
-        </ContentControl>
+                                        <Expander Header="Employees" Margin="10,0,0,0" Style="{DynamicResource ExpanderStyleLeftMenu}">
+                                            <ItemsControl ItemsSource="{Binding Employees}">
+                                                <ItemsControl.ItemTemplate>
+                                                    <HierarchicalDataTemplate>
+                                                        <Button Style="{DynamicResource ButtonStyleLeftMenu}">
+                                                            <TextBlock Margin="10,0,0,0" Text="{Binding Position}"/>
+                                                        </Button>
+                                                    </HierarchicalDataTemplate>
+                                                </ItemsControl.ItemTemplate>
+                                            </ItemsControl>
+                                        </Expander>
+                                    </StackPanel>
+                                </Expander>
+                            </HierarchicalDataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
+                </StackPanel>
+            </ScrollViewer>
+        </Border>
+
+
+        <TextBlock Grid.Row="0" Grid.Column="1" Text="{Binding Path=SelectedCompany.FullCompanyName, Mode=OneWay}" FontSize="16" FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Bottom" Foreground="{StaticResource ColorMainBrush}">
+            <TextBlock.Effect>
+                <DropShadowEffect ShadowDepth="4" Color="{StaticResource ColorThird}" Opacity="0.5" BlurRadius="4"/>
+            </TextBlock.Effect>
+        </TextBlock>
+
+        <ContentControl x:Name="Content" Grid.Row="1" Grid.Column="1" Content="{Binding _CompanyView}" />
+
 
     </Grid>
 </Window>

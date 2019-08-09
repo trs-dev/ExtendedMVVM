@@ -1,0 +1,21 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:local="clr-namespace:ExtendedMVVM.Views">
+
+    <!--Colors-->
+    <Color x:Key="ColorMain">#FF3E39B4</Color>
+    <Color x:Key="ColorSecondary">#FFDC9022</Color>
+    <Color x:Key="ColorThird">White</Color>
+
+    <Color x:Key="ColorWindowBackground">#FFDDD7FA</Color>
+    <Color x:Key="ColorMainInactive">#FFDDD7FA</Color>
+
+
+    <!--SolidColorBrushes-->
+    <SolidColorBrush x:Key="ColorMainBrush" Color="{StaticResource ColorMain}"/>
+    <SolidColorBrush x:Key="ColorSecondaryBrush" Color="{StaticResource ColorSecondary}"/>
+    <SolidColorBrush x:Key="ColorThirdBrush" Color="{StaticResource ColorThird}"/>
+    <SolidColorBrush x:Key="ColorWindowBackgroundBrush" Color="{StaticResource ColorWindowBackground}"/>
+    <SolidColorBrush x:Key="ColorMainInactiveBrush" Color="{StaticResource ColorMainInactive}"/>
+
+</ResourceDictionary>

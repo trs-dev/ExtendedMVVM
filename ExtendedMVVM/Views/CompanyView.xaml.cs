@@ -1,5 +1,4 @@
-﻿using ExtendedMVVM.ViewModels;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -17,17 +16,13 @@ using System.Windows.Shapes;
 namespace ExtendedMVVM.Views
 {
     /// <summary>
-    /// Логика взаимодействия для MainWindow.xaml
+    /// Логика взаимодействия для CompanyView.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class CompanyView : UserControl
     {
-        public MainWindow()
+        public CompanyView()
         {
             InitializeComponent();
-            this.DataContext = new MainWindowViewModel();
         }
-
-        
-
     }
 }

@@ -2,6 +2,7 @@
 using ReactiveUI.Fody.Helpers;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Reactive.Linq;
 using System.Text;
@@ -15,9 +16,9 @@ namespace ExtendedMVVM.Models
 
         [Reactive] public string Structure { get; set; }
 
-        [Reactive] public List<Adress> Adresses { get; set; }
+        public ObservableCollection<Adress> Adresses { get; set; }
 
-        [Reactive] public List<Employee> Employees { get; set; }
+        public ObservableCollection<Employee> Employees { get; set; }
 
                
         
@@ -25,7 +26,7 @@ namespace ExtendedMVVM.Models
         public string FullCompanyName => _FullCompanyName.Value;
 
 
-        public Company(string _CompanyName, string _Structure, List<Adress> _Adresses, List<Employee> _Employees)
+        public Company(string _CompanyName, string _Structure, ObservableCollection<Adress> _Adresses, ObservableCollection<Employee> _Employees)
         {
             CompanyName = _CompanyName;
             Structure = _Structure;
@@ -41,26 +42,26 @@ namespace ExtendedMVVM.Models
         public static List<Company> GetCompanies()
         {
             var result = new List<Company> {
-                new Company("TEST-2019", "LLC",
-                new List<Adress>
+                new Company("TEST-2019", "Limited Liability Company",
+                new ObservableCollection<Adress>
                 {
                     new Adress {Country="USA", City="New York" , StreetAdress="Wall Street,13/56", ZipCode="10005", Department="Central Office"},
                     new Adress {Country="USA", City="New York" , StreetAdress="Old Road,720", ZipCode="11234", Department="Warehouse"}
                 },
-                new List<Employee>
+                new ObservableCollection<Employee>
                 {
                     new Employee {Name="Bob Johnson", PhoneNumber="0000000000", Position="Warehouse manager"},
                     new Employee {Name="Sarah Miller", PhoneNumber="1111111111", Position="CEO"},
                     new Employee {Name="Ann Brown", PhoneNumber="2222222222", Position="Manager"}
                 }),
 
-                new Company("Davis And Partners", "LLP",
-                new List<Adress>
+                new Company("Davis And Partners", "Limited Liability Partnership",
+                new ObservableCollection<Adress>
                 {
                     new Adress {Country="USA", City="Washington " , StreetAdress="Greenwater, 421", ZipCode="98022", Department="Central Office"},
                     
                 },
-                new List<Employee>
+                new ObservableCollection<Employee>
                 {
                     new Employee {Name="Oprah Davis", PhoneNumber="33333333333", Position="Owner"}
                 })

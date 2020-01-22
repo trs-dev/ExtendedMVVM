@@ -38,7 +38,7 @@
                                             <ItemsControl ItemsSource="{Binding Adresses}">
                                                 <ItemsControl.ItemTemplate>
                                                     <HierarchicalDataTemplate>
-                                                        <Button Style="{DynamicResource ButtonStyleLeftMenu}">
+                                                        <Button Command="{Binding DataContext.ChangeElement, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=Window}}" CommandParameter="{Binding}" Style="{DynamicResource ButtonStyleLeftMenu}">
                                                             <TextBlock Margin="10,0,0,0" Text="{Binding Department}"/>
                                                         </Button>
                                                     </HierarchicalDataTemplate>
@@ -50,7 +50,7 @@
                                             <ItemsControl ItemsSource="{Binding Employees}">
                                                 <ItemsControl.ItemTemplate>
                                                     <HierarchicalDataTemplate>
-                                                        <Button Style="{DynamicResource ButtonStyleLeftMenu}">
+                                                        <Button Command="{Binding DataContext.ChangeElement, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=Window}}" CommandParameter="{Binding}" Style="{DynamicResource ButtonStyleLeftMenu}">
                                                             <TextBlock Margin="10,0,0,0" Text="{Binding Position}"/>
                                                         </Button>
                                                     </HierarchicalDataTemplate>
@@ -73,7 +73,7 @@
             </TextBlock.Effect>
         </TextBlock>
 
-        <ContentControl x:Name="Content" Grid.Row="1" Grid.Column="1" Content="{Binding _CompanyView}" />
+        <ContentControl x:Name="MainContent" Grid.Row="1" Grid.Column="1" Content="{Binding MainContent}" />
 
 
     </Grid>

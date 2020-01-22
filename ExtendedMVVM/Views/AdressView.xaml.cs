@@ -1,5 +1,4 @@
-﻿using ExtendedMVVM.ViewModels;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -16,15 +15,14 @@ using System.Windows.Shapes;
 
 namespace ExtendedMVVM.Views
 {
-    public partial class MainWindow : Window
+    /// <summary>
+    /// Логика взаимодействия для AdressView.xaml
+    /// </summary>
+    public partial class AdressView : UserControl
     {
-        public MainWindow()
+        public AdressView()
         {
             InitializeComponent();
-            this.DataContext = new MainWindowViewModel();
         }
-
-        
-
     }
 }

@@ -15,9 +15,6 @@ using System.Windows.Shapes;
 
 namespace ExtendedMVVM.Views
 {
-    /// <summary>
-    /// Логика взаимодействия для CompanyView.xaml
-    /// </summary>
     public partial class CompanyView : UserControl
     {
         public CompanyView()
